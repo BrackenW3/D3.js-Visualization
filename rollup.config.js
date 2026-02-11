@@ -1,8 +1,7 @@
 import {readFileSync} from "fs";
 import json from "@rollup/plugin-json";
 import nodeResolve from "@rollup/plugin-node-resolve";
-import ascii from "rollup-plugin-ascii";
-import {terser} from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 import * as meta from "./package.json";
 
 // Extract copyrights from the LICENSE.
@@ -24,8 +23,7 @@ const config = {
   },
   plugins: [
     nodeResolve(),
-    json(),
-    ascii()
+    json()
   ],
   onwarn(message, warn) {
     if (message.code === "CIRCULAR_DEPENDENCY") return;
