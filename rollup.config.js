@@ -50,6 +50,10 @@ export default [
             "InternMap",
             "InternSet"
           ]
+        },
+        compress: {
+          passes: 2,
+          pure_getters: true
         }
       })
     ]
