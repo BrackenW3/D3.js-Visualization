@@ -1,6 +1,6 @@
 # D3: Data-Driven Documents
 
-<a href="https://d3js.org"><img src="https://d3js.org/logo.svg" align="left" hspace="10" vspace="6"></a>
+<a href="https://d3js.org"><img src="https://d3js.org/logo.svg" alt="D3" align="left" hspace="10" vspace="6"></a>
 
 **D3** (or **D3.js**) is a JavaScript library for visualizing data using web standards. D3 helps you bring data to life using SVG, Canvas and HTML. D3 combines powerful visualization and interaction techniques with a data-driven approach to DOM manipulation, giving you the full capabilities of modern browsers and the freedom to design the right visual interface for your data.
 
@@ -21,7 +21,7 @@ If you use npm, `npm install d3`. You can also download the [latest release on G
 
 import * as d3 from "https://cdn.skypack.dev/d3@7";
 
-const div = d3.selectAll("div");
+const div = d3.selectAll("div"); // Select all div elements.
 
 </script>
 ```
@@ -32,7 +32,7 @@ For legacy environments, you can load D3’s UMD bundle from an npm-based CDN su
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script>
 
-const div = d3.selectAll("div");
+const div = d3.selectAll("div"); // Select all div elements.
 
 </script>
 ```
@@ -44,7 +44,7 @@ You can also use the standalone D3 microlibraries. For example, [d3-selection](h
 
 import {selectAll} from "https://cdn.skypack.dev/d3-selection@3";
 
-const div = selectAll("div");
+const div = selectAll("div"); // Select all div elements.
 
 </script>
 ```
