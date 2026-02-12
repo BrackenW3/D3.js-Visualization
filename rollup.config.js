@@ -6,10 +6,7 @@ import * as meta from "./package.json";
 
 // Extract copyrights from the LICENSE.
 const copyright = readFileSync("./LICENSE", "utf-8")
-  .split(/\n/g)
-  .filter(line => /^Copyright\s+/.test(line))
-  .map(line => line.replace(/^Copyright\s+/, ""))
-  .join(", ");
+  .match(/Copyright (.*)/)[1];
 
 const config = {
   input: "bundle.js",

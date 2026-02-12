@@ -1,6 +1,9 @@
 # D3: Data-Driven Documents
 
-<a href="https://d3js.org"><img src="https://d3js.org/logo.svg" alt="D3" align="left" hspace="10" vspace="6"></a>
+[![License](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![NPM](https://img.shields.io/npm/v/d3.svg)](https://www.npmjs.com/package/d3)
+
+<a href="https://d3js.org"><img src="https://d3js.org/logo.svg" alt="D3" width="96" height="91" style="float:left; margin-right:10px; margin-bottom:6px;"></a>
 
 **D3** (or **D3.js**) is a JavaScript library for visualizing data using web standards. D3 helps you bring data to life using SVG, Canvas and HTML. D3 combines powerful visualization and interaction techniques with a data-driven approach to DOM manipulation, giving you the full capabilities of modern browsers and the freedom to design the right visual interface for your data.
 
