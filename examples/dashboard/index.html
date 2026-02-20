@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3.js Professional Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <h1>Analytics Dashboard</h1>
+            <div class="controls">
+                <button id="refresh-btn" class="btn">Refresh Data</button>
+                <div class="theme-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="theme-switch">
+                        <span class="slider round"></span>
+                    </label>
+                    <span>Dark Mode</span>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="grid-item card" id="chart-line">
+                <h2>Revenue Trends</h2>
+                <div class="chart-container"></div>
+                <div class="tooltip" style="opacity:0;"></div>
+            </div>
+            <div class="grid-item card" id="chart-bar">
+                <h2>User Acquisition</h2>
+                <div class="chart-container"></div>
+            </div>
+            <div class="grid-item card" id="chart-force">
+                <h2>Network Analysis</h2>
+                <div class="chart-container"></div>
+            </div>
+            <div class="grid-item card" id="chart-scatter">
+                <h2>Performance Metrics</h2>
+                <div class="chart-container"></div>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
