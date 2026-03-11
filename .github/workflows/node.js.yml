@@ -15,16 +15,20 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [20.x]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn --frozen-lockfile
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 8
+    - run: pnpm install --frozen-lockfile
     - run: |
         echo ::add-matcher::.github/eslint.json
-        yarn run eslint src test --format=compact
-    - run: yarn test
+        pnpm eslint src test --format=compact
+    - run: pnpm test
