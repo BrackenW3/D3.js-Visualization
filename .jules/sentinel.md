@@ -7,3 +7,8 @@
 **Vulnerability:** Inconsistent package manager usage (Yarn vs PNPM) can lead to lockfile drift and security issues.
 **Learning:** While switching package managers is a breaking change, adhering to explicit user mandates (e.g., "Use PNPM") overrides general guidelines against breaking changes in security fixes.
 **Prevention:** Always check user constraints before deciding on package management strategy.
+
+## 2024-05-24 - Missing Security Headers in Edge Workers
+**Vulnerability:** The Cloudflare worker serving the dashboard HTML didn't set security headers (CSP, X-Frame-Options, etc.), allowing potential clickjacking, XSS, and content sniffing.
+**Learning:** Even though edge workers serve simple or completely static content, they still must return full security headers. It's easy to overlook this when the application logic is fully self-contained in a single response string.
+**Prevention:** Always verify that edge/serverless response headers explicitly apply best practice security controls for HTML content.

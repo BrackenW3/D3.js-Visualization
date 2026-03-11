@@ -532,9 +532,15 @@ init();
 
 export default {
   async fetch(request, env, ctx) {
+    // SECURITY: Added essential security headers to prevent clickjacking, XSS, and content sniffing.
     return new Response(html, {
       headers: {
         "content-type": "text/html;charset=UTF-8",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Content-Security-Policy": "default-src 'self' 'unsafe-inline' https://d3js.org; script-src 'self' 'unsafe-inline' https://d3js.org; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;"
       },
     });
   },
