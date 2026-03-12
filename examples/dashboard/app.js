@@ -302,7 +302,14 @@ const init = () => {
         renderAll();
     }
 
-    window.addEventListener("resize", renderAll);
+    // Performance optimization: Debounce resize events to prevent excessive re-renders
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+        if (resizeTimeout) clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            renderAll();
+        }, 250);
+    });
 
     document.getElementById("theme-switch").addEventListener("change", (e) => {
         document.body.classList.toggle("dark-mode");
