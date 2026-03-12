@@ -87,6 +87,12 @@ h2 {
     transform: scale(0.98);
 }
 
+.btn:focus-visible,
+input:focus-visible + .slider {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
 .theme-toggle {
     display: flex;
     align-items: center;
@@ -135,6 +141,11 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(26px);
+}
+
+input:focus-visible + .slider {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 .slider.round {
