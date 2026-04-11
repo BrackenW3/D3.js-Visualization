@@ -1,3 +1,6 @@
 ## 2024-03-11 - Custom Checkbox A11y Pattern
 **Learning:** In the D3 dashboard example, custom switches built by hiding the `<input type="checkbox">` (via `opacity: 0`) and styling a sibling `.slider` element fail to provide accessible names if the visual text label is not wrapped within the `<label>`. Also, because the `<input>` is hidden, standard focus indicators are lost, meaning keyboard users have no idea where they are tabbing.
 **Action:** When encountering custom styled checkboxes using the `opacity: 0` pattern, always add an explicit `aria-label` to the hidden input if the visual label is decoupled, and implement `input:focus-visible + .slider` styles to visually restore the focus ring.
+## 2024-11-20 - D3 Drag Interaction Visual Feedback
+**Learning:** D3's drag behavior (`d3.drag()`) does not natively alter the CSS cursor to indicate grab/grabbing states during interaction. Without explicit CSS, users dragging nodes in a force network chart (or similar interactive visualizations) lack standard visual feedback.
+**Action:** Always verify interactive visualizations have appropriate cursor states defined in CSS. Specifically, target the interactive SVG elements (e.g., `circle`) with `cursor: grab;` and `cursor: grabbing;` on `:active`.

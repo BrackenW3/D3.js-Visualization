@@ -83,6 +83,10 @@ h2 {
     transition: transform 0.1s;
 }
 
+.btn:hover {
+    filter: brightness(0.9);
+}
+
 .btn:active {
     transform: scale(0.98);
 }
@@ -154,6 +158,14 @@ input:focus-visible + .slider {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+#chart-force circle {
+    cursor: grab;
+}
+
+#chart-force circle:active {
+    cursor: grabbing;
 }
 
 .tooltip {
