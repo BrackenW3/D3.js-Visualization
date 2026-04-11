@@ -1,12 +1,11 @@
-
-const html = `<!DOCTYPE html>
+const generateHtml = (nonce) => `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D3.js Professional Dashboard</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <style>
+    <script nonce="${nonce}" src="https://d3js.org/d3.v7.min.js"></script>
+    <style nonce="${nonce}">
 :root {
     --bg-color: #f4f6f8;
     --text-color: #333;
@@ -16,6 +15,10 @@ const html = `<!DOCTYPE html>
     --success-color: #28a745;
     --danger-color: #dc3545;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.opacity-0 {
+    opacity: 0;
 }
 
 body.dark-mode {
@@ -193,7 +196,7 @@ input:checked + .slider:before {
             <div class="grid-item card" id="chart-line">
                 <h2>Revenue Trends</h2>
                 <div class="chart-container"></div>
-                <div class="tooltip" style="opacity:0;"></div>
+                <div class="tooltip opacity-0"></div>
             </div>
             <div class="grid-item card" id="chart-bar">
                 <h2>User Acquisition</h2>
@@ -209,7 +212,7 @@ input:checked + .slider:before {
             </div>
         </main>
     </div>
-    <script>
+    <script nonce="${nonce}">
 // Data Generation
 const generateTimeSeries = (n) => {
     const data = [];
@@ -539,15 +542,16 @@ init();
 
 export default {
   async fetch(request, env, ctx) {
+    const nonce = crypto.randomUUID();
     // SECURITY: Added essential security headers to prevent clickjacking, XSS, and content sniffing.
-    return new Response(html, {
+    return new Response(generateHtml(nonce), {
       headers: {
         "content-type": "text/html;charset=UTF-8",
         "X-Content-Type-Options": "nosniff",
         "X-Frame-Options": "DENY",
         "X-XSS-Protection": "1; mode=block",
         "Referrer-Policy": "strict-origin-when-cross-origin",
-        "Content-Security-Policy": "default-src 'self' 'unsafe-inline' https://d3js.org; script-src 'self' 'unsafe-inline' https://d3js.org; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;"
+        "Content-Security-Policy": `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://d3js.org; style-src 'self' 'nonce-${nonce}'; img-src 'self' data: https:;`,
       },
     });
   },
