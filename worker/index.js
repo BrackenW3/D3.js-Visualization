@@ -551,7 +551,7 @@ export default {
         "X-Frame-Options": "DENY",
         "X-XSS-Protection": "1; mode=block",
         "Referrer-Policy": "strict-origin-when-cross-origin",
-        "Content-Security-Policy": `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://d3js.org; style-src 'self' 'nonce-${nonce}'; img-src 'self' data: https:;`,
+        "Content-Security-Policy": `default-src 'self'; script-src 'self' 'nonce-${nonce}'; style-src 'self' 'nonce-${nonce}'; img-src 'self' data: https:; base-uri 'none'; frame-ancestors 'none';`,
       },
     });
   },
