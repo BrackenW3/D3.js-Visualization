@@ -168,6 +168,7 @@ const renderBarChart = (containerId, data) => {
 const renderForceGraph = (containerId, data) => {
     const container = d3.select(containerId);
     const containerNode = container.node();
+    if (!containerNode) return;
 
     // Performance optimization: explicitly stop previous simulation to prevent CPU leak
     if (containerNode.__simulation) {
