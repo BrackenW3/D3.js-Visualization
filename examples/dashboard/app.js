@@ -167,8 +167,16 @@ const renderBarChart = (containerId, data) => {
 
 const renderForceGraph = (containerId, data) => {
     const container = d3.select(containerId);
+    const containerNode = container.node();
+    if (!containerNode) return;
+
+    // Performance optimization: explicitly stop previous simulation to prevent CPU leak
+    if (containerNode.__simulation) {
+        containerNode.__simulation.stop();
+    }
+
     container.html("");
-    const { width, height } = container.node().getBoundingClientRect();
+    const { width, height } = containerNode.getBoundingClientRect();
     if (width === 0 || height === 0) return;
 
     const svg = container.append("svg")
@@ -179,6 +187,8 @@ const renderForceGraph = (containerId, data) => {
         .force("link", d3.forceLink(data.links).id(d => d.id))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2));
+
+    containerNode.__simulation = simulation;
 
     const link = svg.append("g")
         .attr("stroke", themes[currentTheme].grid)
