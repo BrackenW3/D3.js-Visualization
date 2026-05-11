@@ -4,7 +4,7 @@ const generateHtml = (nonce) => `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D3.js Professional Dashboard</title>
-    <script nonce="${nonce}" src="https://d3js.org/d3.v7.min.js"></script>
+    <script nonce="${nonce}" src="https://d3js.org/d3.v7.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
     <style nonce="${nonce}">
 :root {
     --bg-color: #f4f6f8;
