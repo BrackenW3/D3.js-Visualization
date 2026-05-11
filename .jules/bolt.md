@@ -7,3 +7,7 @@
 ## 2024-05-24 - D3 Force Simulation CPU Leak
 **Learning:** D3 `forceSimulation` instances run an internal timer that continues executing even if their associated SVG DOM nodes are cleared or destroyed. In the `examples/dashboard/app.js` dashboard, re-rendering the network chart on window resize or data refresh caused multiple disconnected simulations to run simultaneously, compounding CPU usage and draining battery.
 **Action:** Always store a reference to active `forceSimulation` instances (e.g., on their parent DOM node) and explicitly call `.stop()` on them before destroying or replacing the graph to prevent invisible CPU leaks.
+
+## 2024-05-11 - D3 Force Simulation CPU Leak
+**Learning:** D3 force simulations (`d3.forceSimulation`) run internal timers (ticks) that continue in the background even if their DOM nodes are destroyed/replaced. This causes a massive CPU and memory leak on re-renders (like window resizing or theme switching), essentially creating "ghost simulations."
+**Action:** Always save a reference to the active simulation (e.g., attaching it to the container DOM node) and explicitly call `simulation.stop()` on the previous instance before initializing a new one.
