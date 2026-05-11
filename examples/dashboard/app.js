@@ -68,7 +68,9 @@ const renderLineChart = (containerId, data) => {
     const svg = container.append("svg")
         .attr("width", width)
         .attr("height", height)
-        .attr("viewBox", [0, 0, width, height]);
+        .attr("viewBox", [0, 0, width, height])
+        .attr("role", "graphics-document document")
+        .attr("aria-label", "Line Chart showing trends over time");
 
     const x = d3.scaleTime()
         .domain(d3.extent(data, d => d.date))
@@ -128,7 +130,9 @@ const renderBarChart = (containerId, data) => {
 
     const svg = container.append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        .attr("role", "graphics-document document")
+        .attr("aria-label", "Bar Chart showing values across categories");
 
     const x = d3.scaleBand()
         .domain(data.map(d => d.category))
@@ -181,7 +185,9 @@ const renderForceGraph = (containerId, data) => {
 
     const svg = container.append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        .attr("role", "graphics-document document")
+        .attr("aria-label", "Force-directed Network Graph showing connections between nodes");
 
     const simulation = d3.forceSimulation(data.nodes)
         .force("link", d3.forceLink(data.links).id(d => d.id))
@@ -258,7 +264,9 @@ const renderScatterPlot = (containerId, data) => {
 
     const svg = container.append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        .attr("role", "graphics-document document")
+        .attr("aria-label", "Scatter Plot showing data points distribution");
 
     const x = d3.scaleLinear()
         .domain([0, 100])
@@ -327,7 +335,13 @@ const init = () => {
         renderAll();
     });
 
-    document.getElementById("refresh-btn").addEventListener("click", () => {
+    const refreshBtn = document.getElementById("refresh-btn");
+    refreshBtn.addEventListener("click", () => {
+        // UX feedback: Disable button and show loading state
+        refreshBtn.disabled = true;
+        const originalText = refreshBtn.textContent;
+        refreshBtn.textContent = "Refreshing...";
+
         // Regenerate data
         const newLineData = generateTimeSeries(50);
         const newBarData = generateCategories(8);
@@ -338,6 +352,12 @@ const init = () => {
         renderBarChart("#chart-bar .chart-container", newBarData);
         renderForceGraph("#chart-force .chart-container", newForceData);
         renderScatterPlot("#chart-scatter .chart-container", newScatterData);
+
+        // Re-enable button after animation delay
+        setTimeout(() => {
+            refreshBtn.disabled = false;
+            refreshBtn.textContent = originalText;
+        }, 800);
     });
 };
 

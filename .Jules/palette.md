@@ -4,3 +4,6 @@
 ## 2024-11-20 - D3 Drag Interaction Visual Feedback
 **Learning:** D3's drag behavior (`d3.drag()`) does not natively alter the CSS cursor to indicate grab/grabbing states during interaction. Without explicit CSS, users dragging nodes in a force network chart (or similar interactive visualizations) lack standard visual feedback.
 **Action:** Always verify interactive visualizations have appropriate cursor states defined in CSS. Specifically, target the interactive SVG elements (e.g., `circle`) with `cursor: grab;` and `cursor: grabbing;` on `:active`.
+## 2024-11-20 - D3 SVG Container Accessibility
+**Learning:** D3-generated `<svg>` containers lack intrinsic semantic meaning for screen readers. Without explicit roles and labels, users relying on assistive technologies may completely miss or misunderstand the visualizations.
+**Action:** Always ensure that dynamically generated `<svg>` containers in D3 implementations include `.attr("role", "graphics-document document")` and a descriptive `.attr("aria-label", "...")` to provide context and accessible names.
